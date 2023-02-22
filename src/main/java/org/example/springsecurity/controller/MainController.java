@@ -34,10 +34,6 @@ public class MainController {
     public String userProfile(Principal principal, Model model) {
         String username = principal.getName();
         User user = userRepo.findByUsername(username);
-        if(user.getFilename() == null){
-            user.setFilename("image.png");
-            System.out.println("ErrorERRORError");
-        }
         model.addAttribute("user", user);
         return "userProfile";
     }

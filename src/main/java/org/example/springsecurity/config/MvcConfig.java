@@ -1,4 +1,4 @@
-package org.example.springsecurity.config.Config;
+package org.example.springsecurity.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
