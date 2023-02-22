@@ -1,6 +1,6 @@
-package org.example.springsecurity.config;
+package org.example.springsecurity.config.Config;
 
-import org.example.springsecurity.domain.User;
+import org.example.springsecurity.model.User;
 import org.example.springsecurity.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

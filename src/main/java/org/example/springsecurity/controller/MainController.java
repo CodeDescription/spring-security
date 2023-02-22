@@ -1,60 +1,52 @@
 package org.example.springsecurity.controller;
 
-import org.example.springsecurity.domain.Message;
-import org.example.springsecurity.repos.MessageRepo;
+import org.example.springsecurity.model.User;
+import org.example.springsecurity.repos.UserRepo;
+import org.example.springsecurity.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Map;
+import java.io.File;
+import java.io.IOException;
+import java.security.Principal;
+import java.util.UUID;
 
 @Controller
 public class MainController {
+
+    @Value("${upload.path}")
+    private String uploadPath;
+
     @Autowired
-    private MessageRepo messageRepo;
+    private UserService userService;
 
-    @GetMapping("/")
-    public String greeting(Map<String, Object> model) {
-
-        return "greeting";
-    }
+    @Autowired
+    private UserRepo userRepo;
 
     @GetMapping("/main")
-    public String main(Map<String, Object> model) {
-        Iterable<Message> messages = messageRepo.findAll();
-
-        model.put("messages", messages);
-
-        return "main";
-    }
-
-    @PostMapping("/main")
-    public String add(@RequestParam String text, @RequestParam String tag, Map<String, Object> model) {
-        Message message = new Message(text, tag);
-
-        messageRepo.save(message);
-
-        Iterable<Message> messages = messageRepo.findAll();
-
-        model.put("messages", messages);
-
-        return "main";
-    }
-
-    @PostMapping("filter")
-    public String filter(@RequestParam String filter, Map<String, Object> model) {
-        Iterable<Message> messages;
-
-        if (filter != null && !filter.isEmpty()) {
-            messages = messageRepo.findByTag(filter);
-        } else {
-            messages = messageRepo.findAll();
+    public String userProfile(Principal principal, Model model) {
+        String username = principal.getName();
+        User user = userRepo.findByUsername(username);
+        if(user.getFilename() == null){
+            user.setFilename("image.png");
+            System.out.println("ErrorERRORError");
         }
+        model.addAttribute("user", user);
+        return "userProfile";
+    }
 
-        model.put("messages", messages);
-
-        return "main";
+    @GetMapping("/")
+    public String greeting(Principal principal, Model model) {
+        String username = principal.getName();
+        User user = userRepo.findByUsername(username);
+        model.addAttribute("user", user);
+        return "greeting";
     }
 }

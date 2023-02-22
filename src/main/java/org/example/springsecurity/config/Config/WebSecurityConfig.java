@@ -1,5 +1,6 @@
-package org.example.springsecurity.config;
+package org.example.springsecurity.config.Config;
 
+import org.example.springsecurity.config.Config.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +16,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
+//@EnableMethodSecurity(prePostEnabled = true)
 class WebSecurityConfig {
     @Autowired
     private DataSource dataSource;
@@ -23,20 +25,22 @@ class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/registration").permitAll()
+//                        .requestMatchers("/user").hasRole("ADMIN")
+                        .requestMatchers("/", "/registration", "/activate/*").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll()
                         .successHandler((request, response, authentication) -> {
-                            response.sendRedirect("/main");
+                            response.sendRedirect("/");
                         })
                         .failureHandler((request, response, exception) -> {
                             response.sendRedirect("/login?error=true");
                         })
                 )
-                .logout((logout) -> logout.permitAll());
+                .logout((logout) -> logout.permitAll())
+                .authenticationProvider(authenticationProvider());
 
         return http.build();
     }
