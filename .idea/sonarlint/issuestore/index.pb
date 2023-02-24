@@ -1,3 +1,17 @@
 
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+i
+9src/main/java/org/example/springsecurity/Application.java,8\6\86ac5332d3fd887829088740b473eeb08ef76069
+h
+8src/main/java/org/example/springsecurity/model/Role.java,4\6\46cd4fa034910350009dcad807ca2447bdddfa8f
+h
+8src/main/java/org/example/springsecurity/model/User.java,4\e\4e56b7148a6060ec7fc7575bc15a607678b4907f
+v
+Fsrc/main/java/org/example/springsecurity/config/CustomUserDetails.java,f\5\f5e666f28de0a4699038f550f8c7ef98a80f1c40
+v
+Fsrc/main/java/org/example/springsecurity/config/WebSecurityConfig.java,b\c\bc5a3c1d353fedf095bdcf932eab553389ece7a6
+}
+Msrc/main/java/org/example/springsecurity/config/CustomUserDetailsService.java,5\e\5e2691b9836a76b5c12cea827ea3c64ce99d01de
+l
+<src/main/java/org/example/springsecurity/repos/UserRepo.java,2\b\2b4570fd26949e844338353432cc22ea40a64ece
