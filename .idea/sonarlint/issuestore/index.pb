@@ -15,3 +15,5 @@ Fsrc/main/java/org/example/springsecurity/config/WebSecurityConfig.java,b\c\bc5
 Msrc/main/java/org/example/springsecurity/config/CustomUserDetailsService.java,5\e\5e2691b9836a76b5c12cea827ea3c64ce99d01de
 l
 <src/main/java/org/example/springsecurity/repos/UserRepo.java,2\b\2b4570fd26949e844338353432cc22ea40a64ece
+w
+Gsrc/main/java/org/example/springsecurity/controller/MainController.java,6\3\633fc079bff8e6bfc4e5d24dcad94f033168a06b

@@ -11,3 +11,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CurrentUserId {
 }
+
+@GetMapping("set_withdraw_day_limit")
+public ResponseEntity<WithdrawDayLimit> getUserWithdrawDayLimit(@CurrentUserId Long userId) {
+    return ResponseEntity.ok(withdrawDayLimitService.getWithdrawDayLimitbyUser(userId));
+}
